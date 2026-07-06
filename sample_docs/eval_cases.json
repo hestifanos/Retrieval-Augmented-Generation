@@ -1,0 +1,10 @@
+[
+  {"question": "Which planet has the biggest volcano?", "doc_id": "solar_system"},
+  {"question": "What planet is known for its rings?", "doc_id": "solar_system"},
+  {"question": "Where was coffee first cultivated?", "doc_id": "coffee"},
+  {"question": "What water temperature should I brew coffee at?", "doc_id": "coffee"},
+  {"question": "Who invented the World Wide Web?", "doc_id": "internet_history"},
+  {"question": "How are domain names turned into IP addresses?", "doc_id": "internet_history"},
+  {"question": "Which bean type has more caffeine?", "doc_id": "coffee"},
+  {"question": "When was the first ARPANET message sent?", "doc_id": "internet_history"}
+]
