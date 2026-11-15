@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
 
+import pytest
+
 from docrag.chunker import chunk_document
 from docrag.evaluate import evaluate
 from docrag.pipeline import RagPipeline
@@ -16,6 +18,17 @@ def test_chunker_splits_and_overlaps():
     # Overlap: the last sentence of chunk 0 also appears in chunk 1.
     last_sentence = chunks[0].text.rstrip(".").split(". ")[-1]
     assert last_sentence in chunks[1].text
+
+
+def test_chunker_caps_long_sentences_and_validates_options():
+    chunks = chunk_document("doc", "extraordinaryword " * 4, max_chars=10)
+    assert chunks
+    assert all(len(chunk.text) <= 10 for chunk in chunks)
+
+    with pytest.raises(ValueError, match="max_chars"):
+        chunk_document("doc", "text", max_chars=0)
+    with pytest.raises(ValueError, match="overlap_sentences"):
+        chunk_document("doc", "text", overlap_sentences=-1)
 
 
 def test_tokenizer_drops_stopwords():
